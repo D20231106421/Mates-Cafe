@@ -93,7 +93,7 @@ const MenuItemVisual = ({ item, iconSize = 48, imageClassName = '', fallbackClas
 export default function App() {
     const [currentRole, setCurrentRole] = useState('customer');
     const [isLoggedIn, setIsLoggedIn] = useState(false);
-    const [authPage, setAuthPage] = useState('select');
+    const [authPage, setAuthPage] = useState('customer-login');
     const [loginEmail, setLoginEmail] = useState('');
     const [loginPassword, setLoginPassword] = useState('');
     const [loginError, setLoginError] = useState('');
@@ -1375,7 +1375,12 @@ export default function App() {
                 <LoginInput icon={<Lock size={18} />} label="Password" type="password" value={loginPassword} onChange={setLoginPassword} placeholder="Enter password" />
                 <button type="submit" className="w-full rounded-xl bg-sky-500 py-4 font-extrabold text-white shadow-md shadow-sky-900/50 transition hover:bg-sky-400">Sign In</button>
             </form>
-            <AuthFooter primary="Create account" onPrimary={() => openAuthPage('customer-register')} onBack={() => openAuthPage('select')} />
+            <button type="button" onClick={() => openAuthPage('customer-register')} className="mt-3 block w-full rounded-xl border border-slate-200 bg-slate-50 py-3 text-sm font-extrabold text-slate-700 transition hover:bg-slate-100">Create account</button>
+            <div className="mt-8 border-t border-slate-100 pt-5 flex justify-center gap-6">
+                <button type="button" onClick={() => openAuthPage('staff-login')} className="text-xs font-extrabold uppercase tracking-widest text-slate-400 transition hover:text-sky-600">Staff Login</button>
+                <span className="text-slate-200 select-none">|</span>
+                <button type="button" onClick={() => openAuthPage('admin-login')} className="text-xs font-extrabold uppercase tracking-widest text-slate-400 transition hover:text-sky-600">Admin Login</button>
+            </div>
         </>
     ));
 
@@ -1388,7 +1393,7 @@ export default function App() {
                 <LoginInput icon={<Lock size={18} />} label="Password" type="password" value={registerPassword} onChange={setRegisterPassword} placeholder="Create password" minLength="4" />
                 <button type="submit" className="w-full rounded-xl bg-sky-500 py-4 font-extrabold text-white shadow-md shadow-sky-900/50 transition hover:bg-sky-400">Register</button>
             </form>
-            <AuthFooter primary="Already have an account" onPrimary={() => openAuthPage('customer-login')} onBack={() => openAuthPage('select')} />
+            <AuthFooter primary="Already have an account" onPrimary={() => openAuthPage('customer-login')} onBack={() => openAuthPage('customer-login')} />
         </>
     ));
 
@@ -1400,16 +1405,15 @@ export default function App() {
                 <LoginInput icon={<Lock size={18} />} label="Password" type="password" value={loginPassword} onChange={setLoginPassword} placeholder="Enter password" />
                 <button type="submit" className="w-full rounded-xl bg-sky-500 py-4 font-extrabold text-white shadow-md shadow-sky-900/50 transition hover:bg-sky-400">Sign In</button>
             </form>
-            <AuthFooter onBack={() => openAuthPage('select')} />
+            <AuthFooter onBack={() => openAuthPage('customer-login')} />
         </>
     ));
 
     const renderAuth = () => {
-        if (authPage === 'customer-login') return renderCustomerLogin();
         if (authPage === 'customer-register') return renderCustomerRegister();
         if (authPage === 'staff-login') return renderRoleLogin('staff');
         if (authPage === 'admin-login') return renderRoleLogin('admin');
-        return renderAuthSelect();
+        return renderCustomerLogin();
     };
 
     if (!isLoggedIn) return renderAuth();
