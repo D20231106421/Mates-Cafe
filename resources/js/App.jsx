@@ -646,8 +646,8 @@ export default function App() {
             <nav className="rounded-full border border-slate-200/60 bg-white/80 shadow-lg shadow-slate-200/50 backdrop-blur-xl">
                 <div className="flex flex-col items-center justify-between gap-4 px-6 py-3 sm:flex-row">
                     <button className="group flex items-center gap-3" onClick={() => currentRole === 'customer' && setCurrentView('home')}>
-                        <span className="rounded-xl bg-gradient-to-br from-sky-400 to-sky-600 p-2.5 text-white shadow-md transition-transform group-hover:scale-105">
-                            <Coffee size={22} strokeWidth={2.5} />
+                        <span className="flex h-10 w-10 items-center justify-center overflow-hidden rounded-xl bg-white shadow-md transition-transform group-hover:scale-105">
+                            <img src="/images/logo.png" alt="MatesCafe Logo" className="h-full w-full object-contain" />
                         </span>
                         <span className="text-2xl font-extrabold tracking-tight text-slate-900">Mates<span className="text-sky-500">Cafe</span></span>
                     </button>
@@ -1346,7 +1346,9 @@ export default function App() {
                     className="p-10 text-center text-white"
                     style={{ background: 'rgba(15,23,42,0.78)', backdropFilter: 'blur(18px)', WebkitBackdropFilter: 'blur(18px)' }}
                 >
-                    <div className="mx-auto mb-6 flex h-20 w-20 items-center justify-center rounded-2xl bg-gradient-to-br from-sky-400 to-sky-600 shadow-lg shadow-sky-900/50 animate-float"><Coffee size={40} strokeWidth={2} /></div>
+                    <div className="mx-auto mb-6 flex h-20 w-20 items-center justify-center rounded-2xl bg-white shadow-lg shadow-sky-900/20 animate-float overflow-hidden">
+                        <img src="/images/logo.png" alt="MatesCafe Logo" className="h-full w-full object-contain" />
+                    </div>
                     <h1 className="text-3xl font-extrabold tracking-tight">{title}</h1>
                     <p className="mt-2 font-medium text-slate-400">{subtitle}</p>
                 </div>
@@ -1445,7 +1447,7 @@ export default function App() {
             </main>
             <footer className="mt-auto border-t border-slate-800 bg-slate-900 py-12 text-slate-400">
                 <div className="mx-auto mb-8 grid max-w-6xl grid-cols-1 gap-8 px-4 text-sm md:grid-cols-3">
-                    <div><div className="mb-4 flex items-center gap-2 text-white"><span className="rounded-lg bg-gradient-to-br from-sky-400 to-sky-600 p-1.5"><Coffee size={16} strokeWidth={3} /></span><span className="text-lg font-extrabold tracking-tight">Mates<span className="text-sky-500">Cafe</span></span></div><p className="leading-relaxed">Providing high quality coffee and food. Skip the line, order online, and enjoy.</p></div>
+                    <div><div className="mb-4 flex items-center gap-2 text-white"><span className="flex h-7 w-7 items-center justify-center overflow-hidden rounded-lg bg-white"><img src="/images/logo.png" alt="MatesCafe Logo" className="h-full w-full object-contain" /></span><span className="text-lg font-extrabold tracking-tight">Mates<span className="text-sky-500">Cafe</span></span></div><p className="leading-relaxed">Providing high quality coffee and food. Skip the line, order online, and enjoy.</p></div>
                     <div><h4 className="mb-4 text-xs font-bold uppercase tracking-wider text-white">Operating Hours</h4><ul className="space-y-2"><li className="flex justify-between"><span className="font-medium text-slate-500">Mon - Sun:</span> 11:00 AM - 11:00 PM</li></ul></div>
                     <div><h4 className="mb-4 text-xs font-bold uppercase tracking-wider text-white">Location</h4><p className="leading-relaxed">NO 53 BAWAH,<br />Jalan Besar, PEKAN,<br />35900 Tanjong Malim, Perak</p><a href="https://maps.app.goo.gl/KJ8GHqP4KRKsguTY6" target="_blank" rel="noopener noreferrer" className="mt-3 inline-flex items-center gap-1.5 text-xs font-bold text-sky-400 transition hover:text-sky-300">Open in Google Maps &rarr;</a></div>
                 </div>
