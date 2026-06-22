@@ -711,7 +711,7 @@ export default function App() {
                         <div className="relative mx-auto w-full max-w-md lg:max-w-none">
                             <div className="absolute -inset-4 rounded-[3rem] bg-gradient-to-tr from-sky-100 to-blue-50 opacity-50 blur-2xl"></div>
                             <div className="relative aspect-square overflow-hidden rounded-[3rem] bg-white shadow-2xl shadow-slate-200/50">
-                                <img src="/images/Mates.jfif" alt="Artisan Coffee" className="absolute inset-0 h-full w-full object-cover" />
+                                <img src="/images/Hero.jpg" alt="Artisan Coffee" className="absolute inset-0 h-full w-full object-cover" />
                                 <div className="absolute inset-0 bg-gradient-to-t from-slate-900/40 to-transparent"></div>
                             </div>
                             <div className="absolute -bottom-6 -left-6 flex animate-float items-center gap-4 rounded-2xl bg-white p-5 shadow-xl shadow-slate-200/50">
