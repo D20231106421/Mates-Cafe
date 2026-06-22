@@ -34,7 +34,7 @@ const DEFAULT_MENU_FORM = { id: null, name: '', category: 'Coffee', basePrice: '
 const DEFAULT_CUSTOMER_ACCOUNTS = [
     { name: 'Customer', email: 'customer@mates.com', password: '123456' },
 ];
-const ADMIN_ACCOUNT = { email: 'admin@mates.com', password: '123456' };
+const ADMIN_ACCOUNT = { email: 'admin@mates.com', password: 'MatesCafe@53' };
 
 const getApiUrl = (path) => {
     const pathname = window.location.pathname;
