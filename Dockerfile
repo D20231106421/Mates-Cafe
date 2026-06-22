@@ -1,6 +1,6 @@
 FROM php:8.3-fpm
 
-# Install system dependencies
+# Install system dependencies (including freetype/jpeg for gd)
 RUN apt-get update && apt-get install -y \
     git \
     curl \
@@ -10,6 +10,8 @@ RUN apt-get update && apt-get install -y \
     libpq-dev \
     libzip-dev \
     libicu-dev \
+    libfreetype6-dev \
+    libjpeg62-turbo-dev \
     zip \
     unzip \
     nginx \
@@ -23,9 +25,9 @@ RUN curl -fsSL https://deb.nodesource.com/setup_20.x | bash - \
     && apt-get clean \
     && rm -rf /var/lib/apt/lists/*
 
-# Install PHP extensions
+# Configure and install PHP extensions
 RUN docker-php-ext-configure gd --with-freetype --with-jpeg \
-    && docker-php-ext-install \
+    && docker-php-ext-install -j$(nproc) \
         pdo \
         pdo_pgsql \
         pgsql \
@@ -38,6 +40,9 @@ RUN docker-php-ext-configure gd --with-freetype --with-jpeg \
         intl \
         opcache
 
+# Set PHP memory limit for composer
+RUN echo "memory_limit = 512M" > /usr/local/etc/php/conf.d/memory.ini
+
 # Install Composer
 COPY --from=composer:latest /usr/bin/composer /usr/bin/composer
 
@@ -47,16 +52,22 @@ WORKDIR /var/www
 # Copy composer files first (for layer caching)
 COPY composer.json composer.lock ./
 
-# Install PHP dependencies (no dev, no scripts yet)
-RUN composer install --no-dev --no-scripts --no-autoloader --prefer-dist --no-interaction
+# Install PHP dependencies
+RUN COMPOSER_MEMORY_LIMIT=-1 composer install \
+    --no-dev \
+    --no-scripts \
+    --no-autoloader \
+    --prefer-dist \
+    --no-interaction \
+    --ignore-platform-reqs
 
 # Copy the rest of the application
 COPY . .
 
 # Generate optimised autoloader
-RUN composer dump-autoload --optimize --no-dev
+RUN COMPOSER_MEMORY_LIMIT=-1 composer dump-autoload --optimize --no-dev
 
-# Run post-autoload-dump scripts (package discovery etc.)
+# Run package discovery
 RUN php artisan package:discover --ansi || true
 
 # Install Node dependencies and build assets
