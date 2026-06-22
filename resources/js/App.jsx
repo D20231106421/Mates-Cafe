@@ -1405,7 +1405,14 @@ export default function App() {
                 <LoginInput icon={<Lock size={18} />} label="Password" type="password" value={loginPassword} onChange={setLoginPassword} placeholder="Enter password" />
                 <button type="submit" className="w-full rounded-xl bg-sky-500 py-4 font-extrabold text-white shadow-md shadow-sky-900/50 transition hover:bg-sky-400">Sign In</button>
             </form>
-            <AuthFooter onBack={() => openAuthPage('customer-login')} />
+            <div className="mt-8 border-t border-slate-100 pt-5 flex justify-center gap-6">
+                <button type="button" onClick={() => openAuthPage('customer-login')} className="text-xs font-extrabold uppercase tracking-widest text-slate-400 transition hover:text-sky-600">Customer Login</button>
+                <span className="text-slate-200 select-none">|</span>
+                {role === 'admin'
+                    ? <button type="button" onClick={() => openAuthPage('staff-login')} className="text-xs font-extrabold uppercase tracking-widest text-slate-400 transition hover:text-sky-600">Staff Login</button>
+                    : <button type="button" onClick={() => openAuthPage('admin-login')} className="text-xs font-extrabold uppercase tracking-widest text-slate-400 transition hover:text-sky-600">Admin Login</button>
+                }
+            </div>
         </>
     ));
 
