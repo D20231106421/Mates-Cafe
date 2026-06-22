@@ -1367,7 +1367,7 @@ export default function App() {
         </div>
     ));
 
-    const renderCustomerLogin = () => renderAuthShell('Customer Login', 'Sign in to order from MatesCafe', (
+    const renderCustomerLogin = () => renderAuthShell('Mates Cafe', 'Customer Login', (
         <>
             {loginError && <AuthError text={loginError} />}
             <form onSubmit={handleCustomerLogin} className="space-y-6">
