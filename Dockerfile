@@ -65,7 +65,7 @@ RUN COMPOSER_MEMORY_LIMIT=-1 composer install \
 COPY . .
 
 # Generate optimised autoloader
-RUN COMPOSER_MEMORY_LIMIT=-1 composer dump-autoload --optimize --no-dev
+RUN COMPOSER_MEMORY_LIMIT=-1 composer dump-autoload --optimize --no-dev --no-scripts
 
 # Run package discovery
 RUN php artisan package:discover --ansi || true
