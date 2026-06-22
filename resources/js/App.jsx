@@ -1324,14 +1324,34 @@ export default function App() {
     );
 
     const renderAuthShell = (title, subtitle, children) => (
-        <div className="relative flex min-h-screen items-center justify-center overflow-hidden bg-slate-50 p-4">
-            <div className="relative z-10 w-full max-w-md overflow-hidden rounded-[2rem] border border-slate-100 bg-white shadow-xl">
-                <div className="bg-slate-900 p-10 text-center text-white">
+        <div
+            className="relative flex min-h-screen items-center justify-center overflow-hidden p-4"
+            style={{
+                backgroundImage: "url('/images/cafe-bg.jpg')",
+                backgroundSize: 'cover',
+                backgroundPosition: 'center',
+                backgroundRepeat: 'no-repeat',
+            }}
+        >
+            {/* Dark overlay */}
+            <div className="absolute inset-0" style={{ background: 'rgba(0,0,0,0.62)' }} />
+
+            {/* Login card */}
+            <div
+                className="relative z-10 w-full max-w-md overflow-hidden rounded-[2rem] shadow-2xl"
+                style={{ border: '1px solid rgba(255,255,255,0.13)' }}
+            >
+                {/* Card header — frosted glass */}
+                <div
+                    className="p-10 text-center text-white"
+                    style={{ background: 'rgba(15,23,42,0.78)', backdropFilter: 'blur(18px)', WebkitBackdropFilter: 'blur(18px)' }}
+                >
                     <div className="mx-auto mb-6 flex h-20 w-20 items-center justify-center rounded-2xl bg-gradient-to-br from-sky-400 to-sky-600 shadow-lg shadow-sky-900/50 animate-float"><Coffee size={40} strokeWidth={2} /></div>
                     <h1 className="text-3xl font-extrabold tracking-tight">{title}</h1>
                     <p className="mt-2 font-medium text-slate-400">{subtitle}</p>
                 </div>
-                <div className="p-8 sm:p-10">
+                {/* Card body */}
+                <div className="p-8 sm:p-10" style={{ background: 'rgba(255,255,255,0.97)' }}>
                     {children}
                 </div>
             </div>
