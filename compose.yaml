@@ -54,3 +54,5 @@ networks:
 volumes:
     sail-pgsql:
         driver: local
+        
+CMD ["/usr/bin/supervisord", "-c", "/var/www/docker/supervisord.conf"]
