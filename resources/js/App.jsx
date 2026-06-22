@@ -1404,7 +1404,7 @@ export default function App() {
             {loginError && <AuthError text={loginError} />}
             <form onSubmit={(event) => handleStaffLogin(event, role)} className="space-y-6">
                 <LoginInput icon={<Mail size={18} />} label="Enter Email Address" type="email" value={loginEmail} onChange={setLoginEmail} placeholder="Enter Email Address" />
-                <LoginInput icon={<Lock size={18} />} label="Password" type="password" value={loginPassword} onChange={setLoginPassword} placeholder="Enter password" />
+                <LoginInput icon={<Lock size={18} />} label="Password" type="password" value={loginPassword} onChange={setLoginPassword} placeholder="Enter Password" />
                 <button type="submit" className="w-full rounded-xl bg-sky-500 py-4 font-extrabold text-white shadow-md shadow-sky-900/50 transition hover:bg-sky-400">Sign In</button>
             </form>
             <div className="mt-8 border-t border-slate-100 pt-5 flex justify-center gap-6">
