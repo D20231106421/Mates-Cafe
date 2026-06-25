@@ -989,7 +989,10 @@ export default function App() {
                     {orders.map((order) => (
                         <tr key={order.id} className="transition hover:bg-slate-50/50">
                             <td className="p-5 align-top"><div className="text-lg font-extrabold text-sky-600">{order.id}</div><div className="mt-1 text-xs font-bold uppercase tracking-wider text-slate-400">{order.time}</div></td>
-                            <td className="p-5 align-top font-bold text-slate-800">{order.customer}</td>
+                            <td className="p-5 align-top">
+                                    <div className="font-bold text-slate-800">{order.customer}</div>
+                                    {order.customerPhone && <div className="mt-0.5 text-xs font-medium text-slate-400">{order.customerPhone}</div>}
+                                </td>
                             <td className="p-5 align-top"><ItemList items={order.items} /></td>
                             <td className="w-64 p-5 align-top">
                                 {order.status === 'Canceled' ? (
