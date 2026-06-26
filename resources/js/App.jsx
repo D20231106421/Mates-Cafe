@@ -91,8 +91,8 @@ const MenuItemVisual = ({ item, iconSize = 48, imageClassName = '', fallbackClas
 };
 
 export default function App() {
-    const [currentRole, setCurrentRole] = useState('customer');
-    const [isLoggedIn, setIsLoggedIn] = useState(false);
+    const [currentRole, setCurrentRole] = useState(() => localStorage.getItem('matesCafeCurrentRole') || 'customer');
+    const [isLoggedIn, setIsLoggedIn] = useState(() => localStorage.getItem('matesCafeIsLoggedIn') === 'true');
     const [authPage, setAuthPage] = useState('customer-login');
     const [loginEmail, setLoginEmail] = useState('');
     const [loginPassword, setLoginPassword] = useState('');
@@ -201,6 +201,8 @@ export default function App() {
         setAdminTab('dashboard');
         setIsLoggedIn(true);
         setCurrentCustomer(account);
+        localStorage.setItem('matesCafeIsLoggedIn', 'true');
+        localStorage.setItem('matesCafeCurrentRole', role);
     };
 
     const resetAuthMessages = () => {
@@ -289,6 +291,8 @@ export default function App() {
         setProfileMessage('');
         setCurrentCustomer(null);
         localStorage.removeItem('matesCafeCurrentCustomer');
+        localStorage.removeItem('matesCafeIsLoggedIn');
+        localStorage.removeItem('matesCafeCurrentRole');
     };
 
     const handleProfileSave = async (event) => {
@@ -369,6 +373,8 @@ export default function App() {
             setProfileMessage('');
             setProfileFormData({ name: '', email: '', password: '' });
             localStorage.removeItem('matesCafeCurrentCustomer');
+            localStorage.removeItem('matesCafeIsLoggedIn');
+            localStorage.removeItem('matesCafeCurrentRole');
         } catch (error) {
             console.error(error);
             alert('Failed to delete account. Please try again.');
